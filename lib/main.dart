@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 
-void main(List<String> args) {
+class Contacts {
+  String? name;
+  String? number;
+  String? image;
+  Contacts({required this.name, required this.number, required this.image});
+}
+
+void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     title: 'My App',
@@ -16,13 +23,10 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   final myStyle = TextStyle(fontSize: 20, color: Colors.black);
 
-  final List<String> names = [
-    'ali',
-    'Savid',
-    "sofiq",
-    "Masud",
-    "zahangir",
-    "alim"
+  final List<Contacts> names = [
+    Contacts(name: "Alam", number: "0311", image: "dd8d"),
+    Contacts(name: "Alam mistri", number: "0111", image: "d8dd"),
+    Contacts(name: "Alam Hazi", number: "0121", image: "d8dd"),
   ];
 
   TextEditingController inputC = TextEditingController();
@@ -31,6 +35,8 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
         title: Text('My Contacts'),
       ),
       body: Padding(
@@ -38,31 +44,48 @@ class _MyAppState extends State<MyApp> {
         child: Column(
             //  crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              TextFormField(
-                controller: inputC,
-                onEditingComplete: () {
-                  print(inputC.text);
-                  setState(() {
-                    names.add(inputC.text);
-                  });
-                },
-              ),
+              // TextFormField(
+              //   controller: inputC,
+              //   onEditingComplete: () {
+              //     print(inputC.text);
+              //     setState(() {
+              //       names.add(inputC.text);
+              //     });
+              //   },
+              // ),
               // Note : symbols  // BuiltContest < c // Index < i ///
               Expanded(
-                child: GridView.builder(
+                child: ListView.builder(
                     itemCount: names.length,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 2,
-                      crossAxisSpacing: 2,
-                    ),
                     physics: BouncingScrollPhysics(),
                     itemBuilder: (c, i) {
-                      return Card(
-                        color: Colors.amber,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text('${names[i]}'),
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Card(
+                          elevation: 5,
+                          shadowColor: Colors.grey.withOpacity(0.4),
+                          //color: Colors.amber,
+                          child: Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: Center(
+                              child: Row(
+                                children: [
+                                  CircleAvatar(),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text('${names[i].name}'),
+                                      Text('${names[i].number}'),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
                         ),
                       );
                     }),
