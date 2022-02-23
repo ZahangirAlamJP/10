@@ -1,126 +1,39 @@
-import 'dart:html';
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:matcher/matcher.dart';
 
-class Contacts {
-  String? name;
-  String? number;
-  String? image;
-  String? address;
-  Contacts(
-      {required this.name,
-      required this.number,
-      required this.image,
-      required this.address});
-}
-
-void main() {
+void main(List<String> args) {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    title: 'My App',
+    title: 'MyApp',
     home: MyApp(),
   ));
 }
 
 class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   State<MyApp> createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-  final myStyle = TextStyle(fontSize: 20, color: Colors.black);
-
-  final List<Contacts> names = [
-    Contacts(name: "Alam", number: "0311", image: "dd8d", address: "shorifpur"),
-    Contacts(
-        name: "Alam mistri",
-        number: "0111",
-        image: "d8dd",
-        address: "shorifpur1"),
-    Contacts(
-        name: "Alam Hazi",
-        number: "0121",
-        image: "d8dd",
-        address: "shorifpur2"),
-  ];
-
-  TextEditingController inputC = TextEditingController();
-
+  String title = "Good Morning";
   @override
   Widget build(BuildContext context) {
+    print("This is Future Now");
+    Future.delayed(Duration(seconds: 5), () {
+      setState(() {
+        title = "Good Evening";
+      });
+      print("This is Future");
+    });
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        title: Text('My Contacts'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Column(
-            //  crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              // TextFormField(
-              //   controller: inputC,
-              //   onEditingComplete: () {
-              //     print(inputC.text);
-              //     setState(() {
-              //       names.add(inputC.text);
-              //     });
-              //   },
-              // ),
-              // Note : symbols  // BuiltContest < c // Index < i ///
-              Expanded(
-                child: ListView.builder(
-                    itemCount: names.length,
-                    physics: BouncingScrollPhysics(),
-                    itemBuilder: (c, i) {
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Card(
-                          elevation: 5,
-                          shadowColor: Colors.grey.withOpacity(0.4),
-                          //color: Colors.amber,
-                          child: Padding(
-                            padding: const EdgeInsets.all(12.0),
-                            child: Center(
-                              child: Row(
-                                children: [
-                                  CircleAvatar(),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text('${names[i].name}'),
-                                      Text('${names[i].number}'),
-                                      Text('${names[i].address}'),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      );
-                    }),
-              ),
-            ]),
+      body: Center(
+        child: Container(
+          child: Text('$title'),
+        ),
       ),
     );
   }
 }
-/*
-Card(
-            elevation: 5,
-            color: Colors.amber,
-            child: Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Text(
-                'Hellfffffffffffffo',
-                style: myStyle,
-              ),
-            ),
-          ),
-*/
