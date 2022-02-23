@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:matcher/matcher.dart';
@@ -18,22 +20,21 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String title = "Good Morning";
   @override
   Widget build(BuildContext context) {
-    print("This is Future Now");
-    Future.delayed(Duration(seconds: 5), () {
-      setState(() {
-        title = "Good Evening";
-      });
-      print("This is Future");
-    });
     return Scaffold(
-      body: Center(
-        child: Container(
-          child: Text('$title'),
-        ),
-      ),
+      body: GridView.builder(
+          gridDelegate:
+              SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
+          itemBuilder: (c, i) {
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                color:
+                    Colors.primaries[Random().nextInt(Colors.primaries.length)],
+              ),
+            );
+          }),
     );
   }
 }
