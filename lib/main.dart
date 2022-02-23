@@ -52,8 +52,9 @@ class _MyAppState extends State<MyApp> {
                 (index) => Dismissible(
                   key: UniqueKey(),
                   onDismissed: (v) {
-                    ScaffoldMessenger.of(context)
-                        .showSnackBar(SnackBar(content: Text('Delated')));
+                    names.remove(index);
+                    // ScaffoldMessenger.of(context)
+                    //     .showSnackBar(SnackBar(content: Text('Delated')));
                   },
                   child: Card(
                     elevation: 5,
