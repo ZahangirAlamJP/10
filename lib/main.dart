@@ -49,8 +49,13 @@ class _MyAppState extends State<MyApp> {
               ),
               // Note : symbols  // BuiltContest < c // Index < i ///
               Expanded(
-                child: ListView.builder(
+                child: GridView.builder(
                     itemCount: names.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 2,
+                      crossAxisSpacing: 2,
+                    ),
                     physics: BouncingScrollPhysics(),
                     itemBuilder: (c, i) {
                       return Card(
