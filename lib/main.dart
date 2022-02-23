@@ -49,14 +49,21 @@ class _MyAppState extends State<MyApp> {
               ),
               ...List.generate(
                 names.length,
-                (index) => Card(
-                  elevation: 5,
-                  color: Colors.amber,
-                  child: Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Text(
-                      names[index],
-                      style: myStyle,
+                (index) => Dismissible(
+                  key: UniqueKey(),
+                  onDismissed: (v) {
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(SnackBar(content: Text('Delated')));
+                  },
+                  child: Card(
+                    elevation: 5,
+                    color: Colors.amber,
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Text(
+                        names[index],
+                        style: myStyle,
+                      ),
                     ),
                   ),
                 ),
