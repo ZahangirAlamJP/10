@@ -35,7 +35,7 @@ class _MyAppState extends State<MyApp> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
-        child: ListView(
+        child: Column(
             //  crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               TextFormField(
@@ -47,27 +47,20 @@ class _MyAppState extends State<MyApp> {
                   });
                 },
               ),
-              ...List.generate(
-                names.length,
-                (index) => Dismissible(
-                  key: UniqueKey(),
-                  onDismissed: (v) {
-                    names.remove(index);
-                    // ScaffoldMessenger.of(context)
-                    //     .showSnackBar(SnackBar(content: Text('Delated')));
-                  },
-                  child: Card(
-                    elevation: 5,
-                    color: Colors.amber,
-                    child: Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Text(
-                        names[index],
-                        style: myStyle,
-                      ),
-                    ),
-                  ),
-                ),
+              // Note : symbols  // BuiltContest < c // Index < i ///
+              Expanded(
+                child: ListView.builder(
+                    itemCount: names.length,
+                    physics: BouncingScrollPhysics(),
+                    itemBuilder: (c, i) {
+                      return Card(
+                        color: Colors.amber,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text('${names[i]}'),
+                        ),
+                      );
+                    }),
               ),
             ]),
       ),
