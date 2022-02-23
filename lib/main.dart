@@ -1,10 +1,17 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 
 class Contacts {
   String? name;
   String? number;
   String? image;
-  Contacts({required this.name, required this.number, required this.image});
+  String? address;
+  Contacts(
+      {required this.name,
+      required this.number,
+      required this.image,
+      required this.address});
 }
 
 void main() {
@@ -24,9 +31,17 @@ class _MyAppState extends State<MyApp> {
   final myStyle = TextStyle(fontSize: 20, color: Colors.black);
 
   final List<Contacts> names = [
-    Contacts(name: "Alam", number: "0311", image: "dd8d"),
-    Contacts(name: "Alam mistri", number: "0111", image: "d8dd"),
-    Contacts(name: "Alam Hazi", number: "0121", image: "d8dd"),
+    Contacts(name: "Alam", number: "0311", image: "dd8d", address: "shorifpur"),
+    Contacts(
+        name: "Alam mistri",
+        number: "0111",
+        image: "d8dd",
+        address: "shorifpur1"),
+    Contacts(
+        name: "Alam Hazi",
+        number: "0121",
+        image: "d8dd",
+        address: "shorifpur2"),
   ];
 
   TextEditingController inputC = TextEditingController();
@@ -80,6 +95,7 @@ class _MyAppState extends State<MyApp> {
                                     children: [
                                       Text('${names[i].name}'),
                                       Text('${names[i].number}'),
+                                      Text('${names[i].address}'),
                                     ],
                                   ),
                                 ],
